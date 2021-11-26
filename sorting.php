@@ -44,6 +44,10 @@ class Sort
 
         if ($this->algo === 'bubble')
             $arrSorted = $this->bubbleSort($unsorted);
+        else if ($this->algo === 'insertion')
+            $arrSorted = $this->insertionSort($unsorted);
+        else
+            throw new Exception('Sorting algorithm '.$this->algo.' is not implemented.');
         echo "\n";
         $this->printArr($arrSorted);
         echo "\n";
@@ -100,7 +104,7 @@ class Sort
      *        Iteration: from first element to last unsorted element; result: largest element in unsorted parts gets moved to first element in sorted portion
      *          Comparison: if element is smaller than next-element, swap the two element values
      *
-     * @param   array   $arr    an unsorted array
+     * @param   array   $arr    an unsorted array of integers
      * @return  array           the sorted array
      * @space                   O(n)
      * @time                    O(n^2)
@@ -122,9 +126,49 @@ class Sort
         }
         return $arr;
     }
+
+    /**
+     * Insertion Sort
+     *
+     * Sorts array by inserting an unsorted element into the sorted part of array by comparing each sorted element to it
+     * Type: comparison
+     *
+     * Pseudo Code:
+     *      Iterate from last unsorted element to first unsorted element; result: all elements are sorted.
+     *          Iterate from first sorted element to last sorted element
+     *              if current sorted element value is less than
+     *                  swap the current sorted element = the last unsorted element
+     *              else (reached element => current sorted element)
+     *                  break inner loop
+     *
+     * @param   array   $arr    an unsorted array of integers
+     * @return  array           the sorted array
+     * @space                   O(n)
+     * @time                    O(n^2)
+     */
+    public function insertionSort(Array $arr) : Array
+    {
+        if (empty($arr) || sizeof($arr) === 1)
+            return $arr;
+
+        $lue = sizeof($arr) - 2;                                // index of last unsorted element
+
+        for ($i = $lue; $i >= 0; $i--) {
+
+            for ($j = $i; $j <= sizeof($arr) - 2; $j++) {       // j is current sorted element were comparing i (last unsorted element) to
+                if ($arr[$j] > $arr[$j + 1])
+                    $this->swap($arr, $j, $j + 1);
+                else
+                    break;
+            }
+        }
+
+        return $arr;
+    }
+
 }
 
-$sorter = new Sort('bubble');
+$sorter = new Sort('insertion');
 
 $unsorted1 = [];
 $unsorted2 = [1];
