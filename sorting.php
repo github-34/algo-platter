@@ -4,12 +4,12 @@
  * Sort is a class of basic sorting algorithms on arrays
  *      Algorithm               Type
  *      1. Bubble sort          comparison
- * 
+ *
  * @package Algorithms
  * @version 0.1.1
  * @access  public
- * @see     http://git@github.com/github-34/algo-platter 
- * @todo    
+ * @see     http://git@github.com/github-34/algo-platter
+ * @todo
  *          - ADD: selection sort
  *          - ADD: insertion sort
  *          - ADD: quick sort
@@ -29,9 +29,9 @@ class Sort
 
     /**
      * Sort
-     * 
+     *
      * Outputs the unsorted array, sorts it by set algorithm and outputs the sorted array
-     * 
+     *
      * @param   Array   $arr    array - passed by reference
      * @return  void
      * @space           O(1)
@@ -51,9 +51,9 @@ class Sort
 
     /**
      * PrintArr
-     * 
+     *
      * Output the contents of an array
-     * 
+     *
      * @param   Array   $arr    array - passed by reference
      * @return  void
      * @space           O(1)
@@ -69,12 +69,12 @@ class Sort
 
     /**
      * Swap
-     * 
-     * Swaps the values of two array elements. 
+     *
+     * Swaps the values of two array elements.
      * The array is passed by reference and not returned.
-     * 
+     *
      * Assumption: both array keys exist in the array.
-     * 
+     *
      * @param   array   &$array
      * @param   int     $firstKey       a valid array element index
      * @param   int     $secondKey      a valid array element index
@@ -91,15 +91,15 @@ class Sort
 
     /**
      * Bubble Sort
-     * 
+     *
      * Sorts by comparing a pair of elements right next to each other and swapping the larger element toward the end of the array
      * Type: comparison sorting algorithm
-     * 
-     * Pseudo Code: 
+     *
+     * Pseudo Code:
      *      Iteration: through all elements: result: all elements are sorted.
      *        Iteration: from first element to last unsorted element; result: largest element in unsorted parts gets moved to first element in sorted portion
      *          Comparison: if element is smaller than next-element, swap the two element values
-     * 
+     *
      * @param   array   $arr    an unsorted array
      * @return  array           the sorted array
      * @space                   O(n)
@@ -108,7 +108,7 @@ class Sort
     public function bubbleSort(Array $arr) : Array
     {
         $lastUnsortedElement = sizeof($arr) - 1;
-       
+
         // iterate through n array elements
         for ($i = 0; $i < sizeof($arr); $i++) {
 
@@ -116,7 +116,7 @@ class Sort
             for ($j = 0; $j < $lastUnsortedElement; $j++)
                 if ($arr[$j] > $arr[$j + 1])
                     $this->swap($arr, $j, $j + 1);
-            
+
             // shrink unsorted part of array by one
             $lastUnsortedElement--;
         }
@@ -126,7 +126,7 @@ class Sort
 
 $sorter = new Sort('bubble');
 
-$unsorted1 = [];                     
+$unsorted1 = [];
 $unsorted2 = [1];
 $unsorted3 = [1, 1];
 $unsorted4 = [1, 2];
