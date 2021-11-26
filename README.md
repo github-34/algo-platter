@@ -1,2 +1,5 @@
 # algo-platter
-a platter of search, sorting alfgorithms and data structures written in PHP
+A platter of search, sorting algorithms and data structures written in PHP
+
+## Sorting Algorithms
+1. Bubble Sort
