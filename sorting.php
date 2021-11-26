@@ -4,14 +4,14 @@
  * Sort is a class of basic sorting algorithms on arrays
  *      Algorithm               Type
  *      1. Bubble sort          comparison
+ *      2. Insertion sort       comparison
+ *      3. Selection sort       comparison
  *
  * @package Algorithms
- * @version 0.1.1
+ * @version 0.3.0
  * @access  public
  * @see     http://git@github.com/github-34/algo-platter
  * @todo
- *          - ADD: selection sort
- *          - ADD: insertion sort
  *          - ADD: quick sort
  *          - ADD: merge sort
  *          - ADD: heap sort
@@ -46,8 +46,11 @@ class Sort
             $arrSorted = $this->bubbleSort($unsorted);
         else if ($this->algo === 'insertion')
             $arrSorted = $this->insertionSort($unsorted);
+        else if ($this->algo === 'selection')
+            $arrSorted = $this->selectionSort($unsorted);
         else
             throw new Exception('Sorting algorithm '.$this->algo.' is not implemented.');
+
         echo "\n";
         $this->printArr($arrSorted);
         echo "\n";
@@ -166,9 +169,54 @@ class Sort
         return $arr;
     }
 
+    /**
+     * Selection Sort
+     *
+     * Sorts an array by finding the smallest element in unsorted part of the array and swapping
+     * it with the first element in unsorted part of array.
+     * Type: basic comparison
+     *
+     * Pseudo-code:
+     *      Iterate through array
+     *          Iterate through all element of unsorted part of array
+     *              Search for smallest element in unsorted portion
+     *          Swap smallest with first unsorted element
+     *          Update first unsorted element as the smallest
+     *
+     * @param   array   $arr    an unsorted array of integers
+     * @return  array           a sorted array
+     * @space                   O(n)
+     * @time                    O(n^2)
+     */
+    public function selectionSort(Array $arr) : Array
+    {
+        $fue = 0;                   // first unsorted element
+        $smallest = 0;              // index of smallest element in current unsorted search/iteration
+        $last = sizeof($arr) - 1;
+
+        // iterate through entire array
+        for ($i = 0; $i <= $last; $i++) {
+
+            // iterate through unsorted part of array
+            for ($j = $fue; $j <= $last; $j++) {
+
+                // find smallest unsorted element
+                if ($arr[$j] < $arr[$smallest])
+                    $smallest = $j;
+            }
+
+            // swap smallest unsorted element with first unsorted element
+            $this->swap($arr, $smallest, $fue);
+
+            $fue++;
+            $smallest = $fue;
+        }
+
+        return $arr;
+    }
 }
 
-$sorter = new Sort('insertion');
+$sorter = new Sort('selection');
 
 $unsorted1 = [];
 $unsorted2 = [1];
