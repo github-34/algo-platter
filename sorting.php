@@ -216,8 +216,10 @@ class Sort
     }
 }
 
-$sorter = new Sort('selection');
+$algorithm = $argv[1];
+$sorter = new Sort($algorithm);
 
+echo "\nRunning ".$algorithm." Sort\n";
 $unsortedArrs = [
     [ 'arr' => [],                          'desc' => 'no elements' ],
     [ 'arr' => [1],                         'desc' => '1 element' ],
