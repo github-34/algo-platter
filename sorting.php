@@ -218,31 +218,22 @@ class Sort
 
 $sorter = new Sort('selection');
 
-$unsorted1 = [];
-$unsorted2 = [1];
-$unsorted3 = [1, 1];
-$unsorted4 = [1, 2];
-$unsorted5 = [1, 1, 1, 1, 1];
-$unsorted6 = [1, 2, 3, 4, 5];
-$unsorted7 = [1, 2, 2, 4, 4];
-$unsorted8 = [5, 4, 3, 2, 1];
-$unsorted9 = [4, 4, 2, 2, 1];
-$unsorted10 = [4, 1, 3, 3, 6, 8];
-$unsorted11 = [4, 1, 3, 9, 6, 8];
-$unsorted12 = [4, 1, 3, 1, 3, 6, 8];
-$unsorted13 = [4, 1, 3, 9, 3, 6, 8];
-$sorter->sort($unsorted1, 'no elements');
-$sorter->sort($unsorted2, '1 element');
-$sorter->sort($unsorted3, '2 elements, same value');
-$sorter->sort($unsorted4, '2 elements, different value');
-$sorter->sort($unsorted5, 'n-elements, same values');
-$sorter->sort($unsorted6, 'n-elements, no duplicates, ascending values');
-$sorter->sort($unsorted7, 'n-elements, duplicates, ascending values');
-$sorter->sort($unsorted8, 'n-elements, no duplicates, descending values');
-$sorter->sort($unsorted9, 'n-elements, duplicates, descending values');
-$sorter->sort($unsorted10, 'n-elements, duplicates, random, even number of elements');
-$sorter->sort($unsorted11, 'n-elements, no duplicates, random, even number of elements');
-$sorter->sort($unsorted12, 'n-elements, duplicates, random, odd number of elements');
-$sorter->sort($unsorted13, 'n-elements, no duplicates, random, odd number of elements');
+$unsortedArrs = [
+    [ 'arr' => [],                          'desc' => 'no elements' ],
+    [ 'arr' => [1],                         'desc' => '1 element' ],
+    [ 'arr' => [1, 1],                      'desc' => '2 elements, same value' ],
+    [ 'arr' => [1, 1],                      'desc' => '2 elements, different value' ],
+    [ 'arr' => [1, 1, 1, 1, 1],             'desc' => 'n elements, same values' ],
+    [ 'arr' => [1, 2, 3, 4, 5],             'desc' => 'n elements, no duplicates, ascending' ],
+    [ 'arr' => [5, 4, 3, 2, 1],             'desc' => 'n elements, no duplicates, descending' ],
+    [ 'arr' => [1, 2, 2, 4, 4],             'desc' => 'n elements, duplicates, ascending' ],
+    [ 'arr' => [4, 4, 2, 2, 1],             'desc' => 'n elements, duplicates, descending' ],
+    [ 'arr' => [4, 1, 3, 3, 6, 8],          'desc' => 'n elements, duplicates, random, even length'],
+    [ 'arr' => [4, 1, 3, 9, 6, 8],          'desc' => 'n elements, no duplicates, random, even length'],
+    [ 'arr' => [4, 1, 3, 1, 3, 6, 8],       'desc' => 'n elements, duplicates, random, odd length'],
+    [ 'arr' => [4, 1, 3, 9, 3, 6, 8],       'desc' => 'n elements, no duplicates, random, odd length'],
+];
+foreach ($unsortedArrs as $unsorted)
+    $sorter->sort($unsorted['arr'], $unsorted['desc']);
 
 ?>
