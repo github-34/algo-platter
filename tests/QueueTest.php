@@ -50,6 +50,34 @@ final class QueueTest extends TestCase
         $this->assertEquals(2,$queue->size());
     }
 
+    public function testCanReverseQueue() : void
+    {
+        $q = new Queue();
+        $q->add(5);
+        $q->add(3);
+        $q->add(4);
+        $q->add(4);
+        $q->add(9);
+        $q->reverse();
+        $this->assertEquals($q->remove(), 9);
+        $this->assertEquals($q->remove(), 4);
+        $this->assertEquals($q->remove(), 4);
+        $this->assertEquals($q->remove(), 3);
+        $this->assertEquals($q->remove(), 5);
+
+        $q2 = new Queue();
+        $q2->add(5);
+        $q2->add(3);
+        $q2->add(4);
+        $q2->add(9);
+        $q2->output();
+        $q2->reverse();
+        $q2->output();
+
+        $this->assertEquals($q2->remove(), 9);
+        $this->assertEquals($q2->remove(), 4);
+        $this->assertEquals($q2->remove(), 3);
+        $this->assertEquals($q2->remove(), 5);
+    }
+
 }
-
-

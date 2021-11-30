@@ -7,7 +7,7 @@
  * Elements can be added to the back of the queue or removed from the front of the queue.
  * Queues are FILO structures without a maximum number of elements.
  *
- * Array Implementation
+ * Implementation: array with front and back elements stored as array indices
  *
  * Note: queues have no maximum number of elements
  *
@@ -21,8 +21,8 @@
 class Queue {
 
     private $elements;
-    private $front;                     // array index of front of queue
-    private $back;                      // array index of back of queue
+    private $front;                     // array index of front of queue [always smallest array index (may not be 0)]
+    private $back;                      // array index of back of queue [always largest array index]
 
     public function __construct()
     {
@@ -136,5 +136,32 @@ class Queue {
         foreach ($this->elements as $node)
             echo $node."<-";
         echo ":B\n";
+    }
+
+    /**
+     * Reverse
+     *
+     * Reverses the queue by swapping the front-back element pairs working inwards
+     *
+     * @return  void
+     * @space       O(1)
+     * @time        O(n)
+     */
+    public function reverse(): void
+    {
+        $frontHelperIndex = $this->front;
+        $backHelperIndex = $this->back;
+
+        while (($backHelperIndex - $frontHelperIndex) >= 1) {
+
+            // swap the current front-back element pairs identified by helper indexes
+            $temp = $this->elements[$frontHelperIndex];
+            $this->elements[$frontHelperIndex] = $this->elements[$backHelperIndex];
+            $this->elements[$backHelperIndex] = $temp;
+
+            // update helper indexes to narrow inwards
+            $frontHelperIndex++;
+            $backHelperIndex--;
+        }
     }
 }
