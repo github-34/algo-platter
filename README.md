@@ -7,5 +7,6 @@ A platter of search and sorting algorithms and data structures written in PHP
 3. Selection Sort
 
 ## Data Structures
-1. Stacks
-2. Linked Lists
+1. Stack
+2. Queue
+3. Linked List
