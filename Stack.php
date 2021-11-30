@@ -85,31 +85,3 @@ class Stack
         return $this->elements[$this->top];
     }
 }
-
-// Basic cases
-$stack = new Stack();
-echo "\nBasic Cases:\n";
-$stack->push(4);
-$stack->push(5);
-$stack->push(6);
-$stack->push(9);
-$stack->push(34.34324234);
-$stack->push('Hello There');
-echo $stack->pop() . "\n";
-echo $stack->pop() . "\n";
-$stack->push(229);
-echo $stack->pop() . "\n";
-echo $stack->pop() . "\n";
-echo $stack->pop() . "\n";
-echo $stack->pop() . "\n";
-
-// Edge cases - empty stack - null returns
-echo "Edge Cases:\n";
-$stack2 = new Stack();
-echo $stack2->top() . "\n";
-// Exception: pop from empty stack
-// echo "\nExceptions:\n";
-// $stack3 = new Stack();
-// $stack3->push(5);
-// $stack3->pop();
-// $stack3->pop();
