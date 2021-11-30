@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Sort is a class of basic sorting algorithms on arrays
@@ -217,27 +217,5 @@ class Sort
         return $arr;
     }
 }
-
-// $algorithm = $argv[1];
-// $sorter = new Sort($algorithm);
-
-// echo "\nRunning ".$algorithm." Sort\n";
-// $unsortedArrs = [
-//     [ 'arr' => [],                          'desc' => 'no elements' ],
-//     [ 'arr' => [1],                         'desc' => '1 element' ],
-//     [ 'arr' => [1, 1],                      'desc' => '2 elements, same value' ],
-//     [ 'arr' => [1, 1],                      'desc' => '2 elements, different value' ],
-//     [ 'arr' => [1, 1, 1, 1, 1],             'desc' => 'n elements, same values' ],
-//     [ 'arr' => [1, 2, 3, 4, 5],             'desc' => 'n elements, no duplicates, ascending' ],
-//     [ 'arr' => [5, 4, 3, 2, 1],             'desc' => 'n elements, no duplicates, descending' ],
-//     [ 'arr' => [1, 2, 2, 4, 4],             'desc' => 'n elements, duplicates, ascending' ],
-//     [ 'arr' => [4, 4, 2, 2, 1],             'desc' => 'n elements, duplicates, descending' ],
-//     [ 'arr' => [4, 1, 3, 3, 6, 8],          'desc' => 'n elements, duplicates, random, even length'],
-//     [ 'arr' => [4, 1, 3, 9, 6, 8],          'desc' => 'n elements, no duplicates, random, even length'],
-//     [ 'arr' => [4, 1, 3, 1, 3, 6, 8],       'desc' => 'n elements, duplicates, random, odd length'],
-//     [ 'arr' => [4, 1, 3, 9, 3, 6, 8],       'desc' => 'n elements, no duplicates, random, odd length'],
-// ];
-// foreach ($unsortedArrs as $unsorted)
-//     $sorter->sort($unsorted['arr'], $unsorted['desc']);
 
 ?>
