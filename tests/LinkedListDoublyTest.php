@@ -46,11 +46,7 @@ final class LinkedListDoublyTest extends TestCase
         $this->expectException(Exception::class);
         $ll1 = new LinkedListDoubly();
         $ll1->addFirst(4);
-        $ll1->output();
-        // print_r($ll1->first);
-        // exit;
         $ll1->removeFirst();
-        
         $ll1->removeFirst();
     }
 }
