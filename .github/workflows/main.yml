@@ -25,17 +25,13 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
-      # Runs a single command using the runners shell
-      - name: Run Bubble Sort
-        run: php sorting.php bubble
-      - name: Run Insertion Sort
-        run: php sorting.php insertion
-      - name: Run Selection Sort
-        run: php sorting.php selection
-      - name: Run Stack Structure
-        run: php stack.php
-      - name: Run Linked List Structure
-        run: php linkedlist.php
+      - name: Install Composer Dependencies
+        run: composer install
+      #- name: Install NPM Dependencies
+      #  run: npm install
+
+      - name: Run Tests
+        run: ./vendor/bin/phpunit tests
 
       # Runs a set of commands using the runners shell
       # - name: Run Sorting
