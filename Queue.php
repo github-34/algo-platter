@@ -126,7 +126,7 @@ class Queue {
     /**
      * Output
      *
-     * Outputs the entire Queue
+     * Outputs the entire Queue indicating the front and back of queue.
      *
      * @return  void
      */
