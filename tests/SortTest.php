@@ -66,6 +66,12 @@ final class SortTest extends TestCase
         $this->doTests($sorter);
     }
 
+    public function testMergeSort(): void
+    {
+        $sorter = new Sort('merge');
+        $this->doTests($sorter);
+    }
+
 }
 
 
