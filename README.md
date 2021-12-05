@@ -6,6 +6,7 @@ A platter of algorithms and data structures written in PHP
 2. Insertion Sort
 3. Selection Sort
 4. Quick Sort
+5. Merge Sort
 
 ## Data Structures: insert, remove, delete, search and sort
 1. Stack
