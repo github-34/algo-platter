@@ -62,7 +62,7 @@ class Sort
             return $unsorted;
         }
         else if ($this->algo === 'merge') {
-            $this->quickSort($unsorted, 0, sizeof($unsorted) - 1);
+            $this->mergeSort($unsorted, 0, sizeof($unsorted) - 1);
             return $unsorted;
         }
         else
@@ -267,7 +267,7 @@ class Sort
     /**
      * Partition
      *
-     * Sort elements into left-rigth partitions relative to pivot, where all elements in left partition are less than pivot and all elements
+     * Sort elements into left-right partitions relative to pivot, where all elements in left partition are less than pivot and all elements
      * in right partition are greater than pivot. Pivot is, initially, assumed to be the value of endIndex.
      *
      * Pseudo-code
@@ -331,17 +331,69 @@ class Sort
      * @param   array   $arr
      * @return  void            $arr is sorted as a side effect
      */
-    public function mergeSort(&$arr, $start, $end )
+    public function mergeSort($arr, $start, $end )
     {
 
-        if (($end - $start) == 1)
-            return;
+        if (($end - $start) <= 0)
+            return $arr;
 
-        $midpoint = 3;
-        $this->mergeSort($arr, $start, $midpoint);
-        $this->mergeSort($arr, $midpoint + 1, $end);
-        $this->merge($arr, $start, $midpoint, $midpoint + 1, $end);
-        //$this->mergeSort()
+        $midpoint = floor(sizeof($arr) / 2);
+
+        $sorted1 = $this->mergeSort($arr, $start, $midpoint);
+        $sorted2 = $this->mergeSort($arr, ($midpoint + 1), $end);
+        $merged = $this->merge($sorted1, $sorted2);
+        return $merged;
+    }
+
+    public function merge(&$arr1, &$arr2) : array
+    {
+        $lSmallest = 0; 
+        $rSmallest = 0;
+        $lpEI = sizeof($arr1) - 1;
+        $rpEI = sizeof($arr2) - 1;
+
+
+        $merged = [];
+
+        // nothing to merge: 0 or 1 element in both partitions
+        //if (empty($arr)) return [];
+        //if (($rpEI - $lpEI) === 0) return [ $arr[$rpEI] ];
+
+        // loop, adding smallest element to merge, until one (or both) of the partitions is done
+        while ( ($lSmallest <= $lpEI) && ($rSmallest <= $rpEI )
+            && $lpEI >= 0 && $rpEI >= 0)        // arr1 is not empty and arr2 is not empty
+        {
+            if ($arr1[$lSmallest] < $arr2[$rSmallest])
+            {
+                array_push($merged, $arr1[$lSmallest]);
+                $lSmallest++;
+            }
+            elseif ($arr1[$lSmallest] > $arr2[$rSmallest])
+            {
+                array_push($merged, $arr2[$rSmallest]);
+                $rSmallest++;
+            }
+            else //if ($arr[$lSmallest] === $arr[$rSmallest])
+            {
+                array_push($merged, $arr1[$lSmallest]);
+                array_push($merged, $arr2[$rSmallest]);
+                $lSmallest++;
+                $rSmallest++;
+            }
+        }
+
+        // add to merge the elements of remaining (unfinished) partition: where rSmallest < rpEI or lSmallest  < lpSI
+        if ($lSmallest > $lpEI && $rSmallest > $rpEI)
+            return $merged;
+
+        if ($lSmallest > $lpEI)
+            for ($i = $rSmallest; $i <= $rpEI; $i++)
+                array_push($merged, $arr2[$i]);
+        elseif ($rSmallest > $rpEI)
+            for ($i = $lSmallest; $i <= $lpEI; $i++)
+                array_push($merged, $arr1[$i]);
+
+        return $merged;
     }
 
     /**
@@ -366,7 +418,7 @@ class Sort
      * @space           O?
      * @time            O?
      */
-    public function merge(&$arr, $lpSI, $lpEI, $rpSI, $rpEI) : array
+    public function merge2(&$arr, $lpSI, $lpEI, $rpSI, $rpEI) : array
     {
         $lSmallest = $lpSI;
         $rSmallest = $rpSI;
@@ -416,6 +468,8 @@ class Sort
 /**
  * Test for arrays with two, side-by-side, sorted partitions
  */
+
+//  // TEST FOR MERGE2 (from 1 array, with two sorted partitions by indexes)
 // $tests = [
 //     [ [], [], 0,0,0,0 ],
 //     [ [ 1 ], [ 1 ], 0,0,0,0],
@@ -428,43 +482,58 @@ class Sort
 //     [[ 1, 1, 1, 9, 9, 9, 9, 9 ], [ 1, 1, 1, 9, 9, 9, 9, 9 ], 0, 2, 3, 7 ]
 // ];
 
+// // // TEST for MERGE (from 2 sorted array returns Array)
+// $tests = [
+//     [ [], [] ],
+//     [ [ 1 ], [ ] ],
+//     [ [ 1 ], [ 1 ] ],
+//     [ [ 1,1 ], [ 1 ] ],
+//     [ [ 1,1 ], [ 1, 1 ] ],
+//     [ [ 1, 2], [ 1, 2]],
+//     [ [ 3, 4, 6, 9, 11 ], [ 2, 3, 4, 5, 6]],
+//     [[ 100, 101, 200 ], [ 1, 2, 3, 4, 5, 6] ],
+//     [[ 9, 9, 9, 100, 200 ], [ 1, 1, 2, 2, 9, 9, 9] ],
+// //     // [[ 1, 1, 1, 1, 1, 9, 9, 9 ], [ 1, 1, 1, 1, 1, 9, 9, 9 ], 0, 4, 5, 7 ],
+// //     // [[ 1, 1, 1, 9, 9, 9, 9, 9 ], [ 1, 1, 1, 9, 9, 9, 9, 9 ], 0, 2, 3, 7 ]
+// ];
 // $sorter = new Sort('merge');
 // foreach ($tests as $test)
 // {
 //     echo "\n";
 //     $sorter->printArr($test[0]);
+//     $sorter->printArr($test[1]);
 //     echo "\n";
-//     $sorted = $sorter->merge($test[0], $test[2], $test[3], $test[4], $test[5]);
+//     $sorted = $sorter->merge($test[0], $test[1]); //, $test[3], $test[4], $test[5]);
 //     $sorter->printArr($sorted);
 //     echo "\n";
 // }
 
-// $unsortedArrs = [
-//     [1],
-//     [1,2],
-//     [2,1],
-//     [2,2,1],
-//     [2,2,1,1],
-//     [1, 4, 3, 6 ],
-//     [1,2,1],
-//     [2,5, 6, 1],
-//     [ 2, 6, 1, 94, 5, 9],
-//     [ 2, 6, 1, 94, 5, 9],
-//     [ 2, 6, 1, 94, 5, 4, 7],
-//     [ 2, 6, 6, 1, 94, 5, 5, 2, 7],
-//     [],
-// ];
+$unsortedArrs = [
+    [1],
+    [1,2],
+    [2,1],
+    [2,2,1],
+    [2,2,1,1],
+    [1, 4, 3, 6 ],
+    [1,2,1],
+    [2,5, 6, 1],
+    [ 2, 6, 1, 94, 5, 9],
+    [ 2, 6, 1, 94, 5, 9],
+    [ 2, 6, 1, 94, 5, 4, 7],
+    [ 2, 6, 6, 1, 94, 5, 5, 2, 7],
+    [],
+];
 
-// $sorter = new Sort('merge');
-// foreach ($unsortedArrs as $arr) {
-//     echo "\n\nU: ";
-//     $sorter->printArr($arr);
-//     echo "\n";
-//     //$sorter->partition($arr,0, sizeof($arr) - 1);
-//     $sorter->sort($arr);
-//     echo "S: ";
-//     $sorter->printArr($arr);
-// }
-// echo "\n";
+$sorter = new Sort('merge');
+foreach ($unsortedArrs as $arr) {
+    echo "\n\nU: ";
+    $sorter->printArr($arr);
+    echo "\n";
+    //$sorter->partition($arr,0, sizeof($arr) - 1);
+    $sorter->sort($arr);
+    echo "S: ";
+    $sorter->printArr($arr);
+}
+echo "\n";
 
 ?>

@@ -21,8 +21,8 @@ A platter of algorithms and data structures written in PHP
 
 ## Recursion
 1. Integer Sum
-2. Fibonacci
-3. Towers of Hanoi
+2. Factorial
+3. Fibonacci
 
 # Todo
 1. Binary Tree
