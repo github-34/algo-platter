@@ -513,32 +513,32 @@ class Sort
 //     echo "\n";
 // }
 
-$unsortedArrs = [
-    [1],
-    [1,2],
-    [2,1],
-    [2,2,1],
-    [2,2,1,1],
-    [1, 4, 3, 6 ],
-    [1,2,1],
-    [2,5, 6, 1],
-    [ 2, 6, 1, 94, 5, 9],
-    [ 2, 6, 1, 94, 5, 9],
-    [ 2, 6, 1, 94, 5, 4, 7],
-    [ 2, 6, 6, 1, 94, 5, 5, 2, 7],
-    [],
-];
+// $unsortedArrs = [
+//     [1],
+//     [1,2],
+//     [2,1],
+//     [2,2,1],
+//     [2,2,1,1],
+//     [1, 4, 3, 6 ],
+//     [1,2,1],
+//     [2,5, 6, 1],
+//     [ 2, 6, 1, 94, 5, 9],
+//     [ 2, 6, 1, 94, 5, 9],
+//     [ 2, 6, 1, 94, 5, 4, 7],
+//     [ 2, 6, 6, 1, 94, 5, 5, 2, 7],
+//     [],
+// ];
 
-$sorter = new Sort('merge');
-foreach ($unsortedArrs as $arr) {
-    echo "\n\nU: ";
-    $sorter->printArr($arr);
-    echo "\n";
-    //$sorter->partition($arr,0, sizeof($arr) - 1);
-    $sorter->sort($arr);
-    echo "S: ";
-    $sorter->printArr($arr);
-}
-echo "\n";
+// $sorter = new Sort('merge');
+// foreach ($unsortedArrs as $arr) {
+//     echo "\n\nU: ";
+//     $sorter->printArr($arr);
+//     echo "\n";
+//     //$sorter->partition($arr,0, sizeof($arr) - 1);
+//     $sorter->sort($arr);
+//     echo "S: ";
+//     $sorter->printArr($arr);
+// }
+// echo "\n";
 
 ?>
