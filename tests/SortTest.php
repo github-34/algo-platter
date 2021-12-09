@@ -77,52 +77,12 @@ final class SortTest extends TestCase
         $this->doTests($sorter);
     }
 
-    public function testMergeSort(): void
-    {
-        $sorter = new Sort('merge');
-        $this->doTests($sorter);
-    }
+    // public function testMergeSort(): void
+    // {
+    //     $sorter = new Sort('merge');
+    //     $this->doTests($sorter);
+    // }
 
-    public function testBubbleSortLarge(): void
-    {
-        $sorter = new Sort('bubble');
-        $sorted = $sorter->sort($this->largeIntArrUnsorted);
-        $this->assertEquals($this->largeIntArrSorted,$sorted);
-    }
-
-    public function testInsertionSortLarge(): void
-    {
-        $sorter = new Sort('insertion');
-        $sorted = $sorter->sort($this->largeIntArrUnsorted);
-        $this->assertEquals($this->largeIntArrSorted,$sorted);
-    }
-
-    public function testSelectionSortLarge(): void
-    {
-        $sorter = new Sort('insertion');
-        $sorted = $sorter->sort($this->largeIntArrUnsorted);
-        $this->assertEquals($this->largeIntArrSorted,$sorted);
-    }
-
-    public function testQuickSortLarge(): void
-    {
-        $sorter = new Sort('quick');
-        $sorted = $sorter->sort($this->largeIntArrUnsorted);
-        $this->assertEquals($this->largeIntArrSorted,$sorted);
-    }
-
-    public function testMergeSortLarge(): void
-    {
-        $sorter = new Sort('merge');
-        $sorted = $sorter->sort($this->largeIntArrUnsorted);
-        $this->assertEquals($this->largeIntArrSorted,$sorted);
-    }
-    public function testPhpSortLarge(): void
-    {
-        $temp = $this->largeIntArrUnsorted;
-        sort($temp);
-        $this->assertEquals($this->largeIntArrSorted,$temp);
-    }
 }
 
 

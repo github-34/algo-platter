@@ -334,13 +334,18 @@ class Sort
     public function mergeSort($arr, $start, $end )
     {
 
-        if (($end - $start) <= 0)
+        if ($end - $start <= 1)
             return $arr;
 
-        $midpoint = floor(sizeof($arr) / 2);
+        $numElements = ($end - $start) + 1;
+        $midpoint = floor($numElements / 2);
+        // 2 => 1
+        // 3 => 1
 
-        $sorted1 = $this->mergeSort($arr, $start, $midpoint);
-        $sorted2 = $this->mergeSort($arr, ($midpoint + 1), $end);
+        echo "s:".$start."-e:".$end."-m:".$midpoint."\n";
+        $sorted1 = $this->mergeSort($arr, $start, ($start + $midpoint));
+        print_r($sorted1);
+        $sorted2 = $this->mergeSort($arr, ($start + $midpoint + 1), $end);
         $merged = $this->merge($sorted1, $sorted2);
         return $merged;
     }
