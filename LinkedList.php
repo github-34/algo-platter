@@ -13,6 +13,8 @@
  * @see     http://git@github.com/github-34/algo-platter
  * @todo
  *          - Add: reverse LL
+ *          - Add: merge sort
+ *          - Add: quick sort
  *          - Add: intersect sorted LL - return LL not array
  *          - Add: Reverse LL stack implementation
  *          - Add: palindrome: the palindrome of an LL
@@ -41,8 +43,8 @@ class LinkedList
      */
     public function add($value) : void
     {
-        $nextNode = &$this->head;
-        $node = new LinkedListNode($value, $nextNode);
+        $next = &$this->head;
+        $node = new LinkedListNode($value, $next);
         $this->head = &$node;
     }
 
@@ -59,7 +61,7 @@ class LinkedList
             throw new Exception('Linked List is empty!');
 
         $removedNode = $this->head;
-        $this->head = &$this->head->nextNode;
+        $this->head = &$this->head->next;
         return $removedNode;
     }
 
@@ -100,7 +102,7 @@ class LinkedList
                 echo "Obj->";
             else
                 echo $node->element."->";
-            $node = &$node->nextNode;
+            $node = &$node->next;
         }
         echo "NULL\n";
     }
@@ -124,7 +126,7 @@ class LinkedList
 
         while($node instanceof LinkedListNode) {
             $counter++;
-            $node = &$node->nextNode;
+            $node = &$node->next;
         }
         return $counter;
     }
@@ -147,12 +149,12 @@ class LinkedList
 class LinkedListNode
 {
     public $element;
-    public $nextNode;
+    public $next;
 
-    public function __construct($element, &$nextNode)
+    public function __construct($element, &$next)
     {
         $this->element = $element;
-        $this->nextNode = $nextNode;
+        $this->next = $next;
     }
 
     public function output() : void
