@@ -23,11 +23,3 @@ A platter of algorithms and data structures written in PHP
 1. Integer Sum
 2. Factorial
 3. Fibonacci
-
-# Todo
-1. Binary Tree
-2. Hash
-3. AVL Tree
-4. B-Tree
-5. Graphs
-6. Dynamic Algos

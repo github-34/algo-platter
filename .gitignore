@@ -1,5 +1,7 @@
+HashTable.php
 composer.lock
 php/
 py/
 vendor/
+.vscode/
 tests/Large*
