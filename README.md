@@ -1,5 +1,5 @@
 # Algo-Platter
-A platter of algorithms and data structures written in PHP
+A platter of algorithms and data structures written in PHP and Python
 
 ## Array Sorting Algorithms
 1. Bubble Sort
